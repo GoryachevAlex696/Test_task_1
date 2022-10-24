@@ -11,27 +11,27 @@
 <body>
 
 <?php
-    $articleLink = 'https://www.php.net/manual/ru/intro-whatis.php';
-    $articleText = file_get_contents('article.txt'); //переменная хранящая исходный текст статьи
-    $aclean = preg_replace('/[\x00-\x1F\x7F]/u', '', $articleText);
-    $articlePreview = mb_substr($aclean, 0, 200) . "...";
+$articleLink = 'https://www.php.net/manual/ru/intro-whatis.php'; // ссылка на полный тест статьи
+$articleText = file_get_contents('article.txt'); //переменная хранящая исходный текст статьи
+$aclean = preg_replace('/[\x00-\x1F\x7F]/u', '', $articleText);
+$articlePreview = mb_substr($aclean, 0, 200) . "..."; // записываем с (обрезаннли до 200 символов) и приписали многоточие 
 
-    $words = explode(' ', $articlePreview);
-    $co = count($words);
+$words = explode(' ', $articlePreview); //  разбиваем анонс статьи на подстроки (элементы)
+$co = count($words);
 
-    foreach ($words as $key => $word) {
+foreach ($words as $key => $word) {
 
-        if ($key == $co - 3)
-            echo '<a href="' . $articleLink . '">';
+    if ($key == $co - 3)
+        echo '<a href="' . $articleLink . '">';
 
-        if ($key == $co - 1)
-            echo $word;
-        else
-            echo $word . ' ';
+    if ($key == $co - 1)
+        echo $word;
+    else
+        echo $word . ' ';
 
-        if ($key == $co - 1)
-            echo '<a>';
-    }
+    if ($key == $co - 1)
+        echo '<a>';
+}
 ?>
 
 </body>
